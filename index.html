@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Elegant Shop — Frontend Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <div class="brand-name">Elegant<span class="accent">Shop</span></div>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn btn-ghost" aria-label="Toggle theme">☀️ Light Mode</button>
+        <button id="login-btn" class="btn btn-ghost">Log in</button>
+        <button id="signup-btn" class="btn btn-primary">Sign up</button>
+
+        <button id="cart-toggle" class="btn cart-btn" aria-label="Open cart">
+          🛒 <span id="cart-count" class="cart-count">0</span>
+        </button>
+
+        <button class="nav-toggle" aria-hidden="true" id="nav-toggle">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile nav panel -->
+    
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <h1 class="hero-title">Discover Your Perfect Outfit</h1>
+          <p class="hero-sub">Handpicked dresses and outfits crafted for style, comfort, and confidence.</p>
+          <div class="hero-cta">
+            <a href="#shop" class="btn btn-primary">Shop Now</a>
+            <a href="#about" class="btn btn-ghost">Learn More</a>
+          </div>
+        </div>
+        <div class="hero-right hero-image" aria-hidden="true"></div>
+      </div
+    </section>
+
+    <!-- SHOP / FILTERS -->
+    <section id="shop" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Products</h2>
+          <div class="filters">
+            <select id="category-filter" class="select">
+              <option value="all">All categories</option>
+              <option value="dresses">Dresses</option>
+              <option value="tops">Tops</option>
+              <option value="outerwear">Outerwear</option>
+              <option value="accessories">Accessories</option>
+            </select>
+
+            <select id="sort-by" class="select">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price — Low to High</option>
+              <option value="price-desc">Price — High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="products" class="grid grid-4 products" aria-live="polite">
+          <!-- Products rendered here by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials / About -->
+    <section id="about" class="section muted-bg">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Why customers love us</h2>
+          <div class="badge">Trusted quality</div>
+        </div>
+
+        <div class="grid grid-3 testimonials">
+          <div class="card">
+            <div class="content">
+              <p class="prose">"Amazing fit, beautiful fabric — shipping was fast and the packaging felt premium."</p>
+              <div class="byline"><div class="avatar" aria-hidden="true"></div><div><strong>Rhea K.</strong><div class="muted">Verified Buyer</div></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="content">
+              <p class="prose">"The customer support helped me pick the right size. I will buy again."</p>
+              <div class="byline"><div class="avatar" aria-hidden="true"></div><div><strong>Arjun S.</strong><div class="muted">Verified Buyer</div></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="content">
+              <p class="prose">"Classic styles with good tailoring. Perfect for events."</p>
+              <div class="byline"><div class="avatar" aria-hidden="true"></div><div><strong>Maya L.</strong><div class="muted">Verified Buyer</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="grid grid-2">
+          <div>
+            <h3>Stay in touch</h3>
+            <p class="muted">Join our newsletter for exclusive offers and new arrivals.</p>
+            <form id="newsletter" class="form-grid">
+              <input type="email" id="email" placeholder="you@example.com" required />
+              <button class="btn btn-primary full" type="submit">Subscribe</button>
+            </form>
+          </div>
+          <div>
+            <h3>Visit</h3>
+            <p class="muted">123 Fashion St., Style City</p>
+            <p class="muted">Mon–Fri: 10:00–18:00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Sidebar -->
+  <aside id="cart" class="cart-sidebar" aria-hidden="true" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button id="close-cart" class="btn btn-ghost" aria-label="Close cart">✕</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+
+    <div class="cart-footer">
+      <div class="cart-summary">
+        <div>Total</div>
+        <div class="price" id="cart-total">₹0</div>
+      </div>
+      <div class="cart-actions">
+        <button id="clear-cart" class="btn btn-ghost">Clear</button>
+        <button id="checkout" class="btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Overlay for modals / cart -->
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="login-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="login-title">Log in</h3>
+        <button class="btn btn-ghost modal-close" data-modal="login-modal" aria-label="Close login">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="login-form" class="form-grid">
+          <label>Email
+            <input type="email" id="login-email" required placeholder="you@example.com" />
+          </label>
+          <label>Password
+            <input type="password" id="login-password" required placeholder="••••••••" />
+          </label>
+          <button class="btn btn-primary full" type="submit">Log in</button>
+        </form>
+        <p class="muted">Don't have an account? <button id="open-signup" class="btn-link">Create one</button></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signup-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="signup-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="signup-title">Create account</h3>
+        <button class="btn btn-ghost modal-close" data-modal="signup-modal" aria-label="Close signup">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="signup-form" class="form-grid">
+          <label>Full name
+            <input type="text" id="signup-name" required placeholder="Your name" />
+          </label>
+          <label>Email
+            <input type="email" id="signup-email" required placeholder="you@example.com" />
+          </label>
+          <label>Password
+            <input type="password" id="signup-password" required placeholder="Create a password" />
+          </label>
+          <button class="btn btn-primary full" type="submit">Create account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>ElegantShop</strong>
+        <p class="muted">Quality, style and confidence.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#about">About</a><br />
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#shop">Shipping</a><br />
+        <a href="#shop">Returns</a>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <a href="#" aria-label="Instagram">Instagram</a><br />
+        <a href="#" aria-label="Twitter">Twitter</a>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> ElegantShop — All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
